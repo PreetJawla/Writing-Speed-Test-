@@ -13,7 +13,7 @@ This is a simple typing test web application built with HTML, CSS, and JavaScrip
 
 ## How to Use
 
-1.  Open the `index.html` file in your web browser.
+1.  Open the `project.html` file in your web browser.
 2.  Start typing the text displayed in the test area.
 3.  The timer will start automatically when you begin typing.
 4.  Your WPM, accuracy, and elapsed time will be updated in real-time.
@@ -21,7 +21,7 @@ This is a simple typing test web application built with HTML, CSS, and JavaScrip
 
 ## Files
 
--   `index.html`: The HTML structure of the web page.
+-   `project.html`: The HTML structure of the web page.
 -   `style` tags in the `<head>` of the html file: The CSS styles for the web page.
 -   `script` tags at the end of the `<body>` of the html file: The JavaScript logic for the typing test.
 
