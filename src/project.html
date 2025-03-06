@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2E2E2E;
+            color: white;
+            text-align: center;
+        }
+        #test-area {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #fff;
+            background-color: #444;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Typing Test</h1>
+    <div id="test-area">
+        <p id="text-to-type">Type this text as fast as you can!</p>
+        <textarea id="user-input" placeholder="Start typing here..." oninput="checkInput()"></textarea>
+    </div>
+    <div id="results">
+        <p>Words per Minute: <span id="wpm">0</span></p>
+        <p>Accuracy: <span id="accuracy">0%</span></p>
+        <p>Time: <span id="time">0</span>s</p>
+    </div>
+    <script>
+        let startTime, timerInterval;
+        const textToType = document.getElementById('text-to-type').innerText;
+        const userInput = document.getElementById('user-input');
+        const wpmDisplay = document.getElementById('wpm');
+        const accuracyDisplay = document.getElementById('accuracy');
+        const timeDisplay = document.getElementById('time');
+
+        function startTimer() {
+            startTime = new Date();
+            timerInterval = setInterval(updateTime, 1000);
+        }
+
+        function updateTime() {
+            const currentTime = new Date();
+            const timeElapsed = Math.floor((currentTime - startTime) / 1000);
+            timeDisplay.innerText = timeElapsed;
+        }
+
+        function checkInput() {
+            if (!startTime) startTimer();
+            const userText = userInput.value;
+            const correctText = textToType.substring(0, userText.length);
+
+            const wordsTyped = userText.split(' ').filter(word => word).length;
+            const timeElapsed = Math.floor((new Date() - startTime) / 1000);
+            const wpm = Math.floor((wordsTyped / timeElapsed) * 60);
+            wpmDisplay.innerText = wpm;
+
+            const correctChars = userText.split('').filter((char, index) => char === textToType[index]).length;
+            const accuracy = ((correctChars / userText.length) * 100) || 0;
+            accuracyDisplay.innerText = accuracy.toFixed(2) + '%';
+
+            if (userText === textToType) {
+                clearInterval(timerInterval);
+                alert('Test completed! Your results have been recorded.');
+            }
+        }
+    </script>
+</body>
+</html>
